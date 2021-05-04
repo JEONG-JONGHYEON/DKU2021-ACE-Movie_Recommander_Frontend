@@ -2,81 +2,140 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../_actions/user_action'
 import { withRouter } from 'react-router-dom'
+import { Form, Input, Button } from 'antd'
 
-// antd 적용 필요
+const layout = {
+    labelCol: {
+        span: 4,
+    },
+    wrapperCol: {
+        span: 8,
+    },
+};
+
+const tailLayout = {
+    wrapperCol: {
+        offset: 4,
+        span: 8,
+    },
+};
+
 function RegisterPage(props) {
     const dispatch = useDispatch();
 
     const [Email, setEmail] = useState("")
+    const [Nickname, setNickname] = useState("")
     const [Password, setPassword] = useState("")
-    const [Name, setName] = useState("")
-    const [ConfirmPassword, setConfirmPassword] = useState("")
+    const [Password_Confirm, setPassword_Confirm] = useState("")
 
     const onEmailHandler = (event) => {
         setEmail(event.currentTarget.value)
     }
 
-    const onNameHandler = (e) => {
-        setName(e.currentTarget.value)
+    const onNicknameHandler = (e) => {
+        setNickname(e.currentTarget.value)
     }
 
     const onPasswordHandler = (e) => {
         setPassword(e.currentTarget.value)
     }
 
-    const onConfirmPasswordHandler = (e) => {
-        setConfirmPassword(e.currentTarget.value)
+    const onPassword_ConfirmHandler = (e) => {
+        setPassword_Confirm(e.currentTarget.value)
     }
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        if (Password != ConfirmPassword) {
+        if (Password != Password_Confirm) {
             return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
         }
 
         let body = {
             email: Email,
-            name: Name,
-            password: Password
+            nickname: Nickname,
+            password: Password,
+            password_confirm: Password_Confirm
         }
 
         dispatch(registerUser(body))
             .then(response => {
                 console.log(response)
-                if (response.payload.success) {
+                if (response.payload.result) {
+                    alert('회원가입 되었습니다 !')
                     props.history.push('/login')
                 } else {
-                    alert('failed to sign up')
+                    alert(response.payload.error_message)
                 }
             })
     }
 
     return (
-        <div>
-            <div style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                width: '100%', height: '100vh'
-            }}>
-                <form style={{ display: 'flex', flexDirection: 'column' }}
-                    onSubmit={onSubmitHandler}
-                >
-                    <label>Email</label>
-                    <input type="email" value={Email} onChange={onEmailHandler} />
-                    <label>Name</label>
-                    <input type="text" value={Name} onChange={onNameHandler} />
-                    <label>Password</label>
-                    <input type="password" value={Password} onChange={onPasswordHandler} />
-                    <label>ConfirmPassword</label>
-                    <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
+        <Form
+            {...layout}
+            name="basic"
+            style={{ paddingTop: "50px" }}
+        >
+            <Form.Item
+                label="이메일"
+                name="email"
+                rules={[
+                    {
+                        required: true,
+                        message: '이메일은 입력하셔야죠..',
+                    },
+                ]}
+            >
+                <Input value={Email} onChange={onEmailHandler} />
+            </Form.Item>
 
-                    <br />
-                    <button>
-                        Sign Up
-                </button>
-                </form>
-            </div>
-        </div>
+            <Form.Item
+                label="닉네임"
+                name="nickname"
+                rules={[
+                    {
+                        required: true,
+                        message: '닉네임은 입력하셔야죠..',
+                    },
+                ]}
+            >
+                <Input value={Nickname} onChange={onNicknameHandler} />
+            </Form.Item>
+
+            <Form.Item
+                label="비밀번호"
+                name="password"
+                rules={[
+                    {
+                        required: true,
+                        message: '비밀번호는 입력하셔야죠..',
+                    },
+                ]}
+            >
+                <Input.Password value={Password} onChange={onPasswordHandler} />
+            </Form.Item>
+
+            <Form.Item
+                label="비밀번호확인"
+                name="passwordConfirm"
+                rules={[
+                    {
+                        required: true,
+                        message: '비밀번호확인은 입력하셔야죠..',
+                    },
+                ]}
+            >
+                <Input.Password value={Password_Confirm} onChange={onPassword_ConfirmHandler} />
+            </Form.Item>
+
+            <Form.Item
+                {...tailLayout}
+            >
+                <Button type="primary" htmlType="submit" onClick={onSubmitHandler}>
+                    회원가입
+                </Button>
+            </Form.Item>
+        </Form>
     )
 }
 

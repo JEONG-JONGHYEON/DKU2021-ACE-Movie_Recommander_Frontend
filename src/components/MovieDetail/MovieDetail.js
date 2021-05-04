@@ -50,6 +50,7 @@ function MovieDetail(props) {
                     title={Movie.name}
                     score={Movie.score}
                     genres={Movie.genres}
+                    actors={Movie.actors}
                 />
                 <br />
 

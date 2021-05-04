@@ -45,19 +45,19 @@ function LoginPage(props) {
         dispatch(loginUser(body))
             .then(response => {
                 console.log(response)
-                if (response.payload.loginSuccess) {
+                if (response.payload.result) {
+                    alert('로그인 되었습니다 !')
+                    localStorage.setItem("token", response.payload.auth_token)
                     props.history.push('/')
+                    window.location.reload()
                 } else {
-                    alert('에러')
+                    alert(response.payload.error_message)
                 }
             })
     }
 
     return (
-        <div style={{
-            justifyContent: 'center', alignItems: 'center',
-            width: '100%', height: '100vh'
-        }}>
+        <div>
             <Form
                 {...layout}
                 name="basic"
@@ -97,7 +97,8 @@ function LoginPage(props) {
                     </Button>
                 </Form.Item>
             </Form>
-        </div >
+
+        </div>
     );
 };
 

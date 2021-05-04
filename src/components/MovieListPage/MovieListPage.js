@@ -1,72 +1,78 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Row } from 'antd';
-import { API_URL } from '../Config';
-import GridCards from '../commons/GridCards';
+import { useDispatch } from 'react-redux'
+import { Layout, Row } from 'antd'
+import GridCards from '../commons/GridCards'
+import { fetchMovies } from '../../_actions/movie_action'
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
-function MoviePage() {
+function MovieListPage() {
+    const dispatch = useDispatch()
+
     const [Movies, setMovies] = useState([])
     const [CurrentPage, setCurrentPage] = useState(2)
+    const [Title, setTitle] = useState("")
+    const [Genre, setGenre] = useState("")
+    const [Score, setScore] = useState(0)
 
+    // 페이지 렌더링되고 나서 바로 실행
     useEffect(() => {
-        const endpoint = `${API_URL}/movies/?page=1`;
-
-        fetchMovies(endpoint)
+        dispatch(fetchMovies(1, Title, Genre, Score))
+            .then(response => {
+                setMovies(response.payload.results)
+            })
     }, [])
 
-    const fetchMovies = (endpoint) => {
-        fetch(endpoint)
-            .then(response => response.json())
+    // 더 불러오기 버튼 누를 시
+    const loadMoreMovies = () => {
+        setCurrentPage(CurrentPage + 1);
+        dispatch(fetchMovies(CurrentPage, Title, Genre, Score))
             .then(response => {
-                setMovies([...Movies, ...response.results])
+                setMovies([...Movies, ...response.payload.results])
             })
     }
 
-
-    const loadMoreItems = () => {
-        const endpoint = `${API_URL}/movies/?page=${CurrentPage}`;
-        setCurrentPage(CurrentPage + 1);
-        fetchMovies(endpoint)
+    // 영화 필터링 시
+    const filterMovies = () => {
+        setCurrentPage(1);
+        setMovies([]);
+        dispatch(fetchMovies(CurrentPage, Title, Genre, Score))
+            .then(response => {
+                setMovies([...Movies, ...response.payload.results])
+            })
     }
 
     return (
-        <div>
-            <Layout className="layout">
-                <Content style={{ padding: '50px' }}>
-                    <div style={{ width: '100%', margin: '0' }}>
-                        {/* main page */}
+        <Content style={{ padding: '50px' }}>
+            <div style={{ width: '100%', margin: '0' }}>
+                {/* main page */}
 
-                        <div style={{ width: '85%', margin: '1rem auto' }}>
-                            <h2> 영화 목록 </h2>
-                            <hr />
-                            <Row gutter={[16, 16]}>
-                                {Movies && Movies.map((movie, index) => (
-                                    <React.Fragment key={index}>
-                                        <GridCards
-                                            image={movie.img_url} /* img_url 뒤에 삼항 연산자로 기본 이미지 설정도 가능 (url 로) */
-                                            movieId={movie.id}
-                                            movieTitle={movie.name}
-                                        />
-                                    </React.Fragment>
-                                ))}
+                <div style={{ width: '85%', margin: '1rem auto' }}>
+                    <h2> 영화 목록 </h2>
+                    <hr />
+                    <Row gutter={[16, 16]}>
+                        {Movies && Movies.map((movie, index) => (
+                            <React.Fragment key={index}>
+                                <GridCards
+                                    image={movie.img_url} /* img_url 뒤에 삼항 연산자로 기본 이미지 설정도 가능 (url 로) */
+                                    movieId={movie.id}
+                                    movieTitle={movie.name}
+                                />
+                            </React.Fragment>
+                        ))}
 
 
-                            </Row>
-                        </div>
+                    </Row>
+                </div>
 
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <button onClick={loadMoreItems}> 더 불러오기 </button>
-                        </div>
+                <br />
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button onClick={loadMoreMovies}> 더 불러오기 </button>
+                </div>
 
-                    </div>
-                </Content>
-                <Footer style={{ textAlign: 'center' }}>2021-1학기 실무중심산학협력프로젝트 커피한잔</Footer>
-            </Layout>
-
-
-        </div>
+            </div>
+        </Content>
     )
 }
 
-export default MoviePage
+export default MovieListPage

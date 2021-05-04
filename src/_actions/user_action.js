@@ -1,23 +1,42 @@
 import axios from 'axios'
 import {
     LOGIN_USER,
+    LOGOUT_USER,
     REGISTER_USER
 } from './types'
+import { API_URL } from '../components/Config'
 
-const API_URI = 'https://api.movie.live2skull.kr'
 
+// 로그인 액션
 export function loginUser(dataToSubmit) {
-    const request = axios.post(API_URI + '/data/users/login', dataToSubmit)
+    const request = axios.post(API_URL + '/login', dataToSubmit)
         .then(response => response.data)
-
     return {
         type: LOGIN_USER,
         payload: request
     }
 }
 
+
+// 로그아웃 액션
+export function logoutUser() {
+    const request = axios.post(API_URL + '/logout', {}, { headers: { 'Authorization': `Token ${localStorage.getItem("token")}` } })
+        .then(response => response.data)
+        .then(
+            localStorage.removeItem("token"),
+            window.location.reload()
+        )
+
+    return {
+        type: LOGOUT_USER,
+        payload: request
+    }
+}
+
+
+// 회원가입 액션
 export function registerUser(dataToSubmit) {
-    const request = axios.post(API_URI + '/data/users/join', dataToSubmit)
+    const request = axios.post(API_URL + '/join', dataToSubmit)
         .then(response => response.data)
 
     return {
@@ -25,3 +44,4 @@ export function registerUser(dataToSubmit) {
         payload: request
     }
 }
+
