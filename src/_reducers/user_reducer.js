@@ -1,5 +1,7 @@
 import {
+    FETCH_USERINFO,
     LOGIN_USER,
+    LOGOUT_USER,
     REGISTER_USER
 } from '../_actions/types'
 
@@ -10,6 +12,14 @@ export default function (state = {}, action) {
             break;
 
         case REGISTER_USER:
+            return { ...state, register: action.payload }
+            break;
+
+        case LOGOUT_USER:
+            return { ...state, register: action.payload }
+            break;
+
+        case FETCH_USERINFO:
             return { ...state, register: action.payload }
             break;
 

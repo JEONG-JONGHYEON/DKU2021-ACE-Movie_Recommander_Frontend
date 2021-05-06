@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar/NavBar";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import Footer from "./components/Footer/Footer"
 import Layout from "antd/lib/layout/layout";
+import MyPage from "./components/MyPage/MyPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/movie/:movieId" component={MovieDetail} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/mypage" component={MyPage} />
           </Switch>
         </Router>
         <Footer />

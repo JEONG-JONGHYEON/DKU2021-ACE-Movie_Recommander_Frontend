@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Layout, Row } from 'antd'
-import GridCards from '../commons/GridCards'
 import { fetchMovies } from '../../_actions/movie_action'
+import GridCards from '../commons/GridCards'
 
 const { Content } = Layout;
 

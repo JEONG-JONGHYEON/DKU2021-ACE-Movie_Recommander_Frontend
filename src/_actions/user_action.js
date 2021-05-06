@@ -2,7 +2,8 @@ import axios from 'axios'
 import {
     LOGIN_USER,
     LOGOUT_USER,
-    REGISTER_USER
+    REGISTER_USER,
+    FETCH_USERINFO
 } from './types'
 import { API_URL } from '../components/Config'
 
@@ -45,3 +46,14 @@ export function registerUser(dataToSubmit) {
     }
 }
 
+// 유저 정보 액션
+export function fetchUserInfo() {
+    const request = axios.get(API_URL + '/myinfo',
+        { headers: { 'Authorization': `Token ${localStorage.getItem("token")}` } })
+        .then(response => response.data)
+
+    return {
+        type: FETCH_USERINFO,
+        payload: request
+    }
+}

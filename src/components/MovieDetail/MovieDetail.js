@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { API_URL } from '../Config';
-import MovieInfo from './Sections/MovieInfo';
+import { useDispatch } from 'react-redux'
+import { fetchMovieDetail } from '../../_actions/movie_action'
+import MovieInfo from './Sections/MovieInfo'
 
 function MovieDetail(props) {
 
     let movieId = props.match.params.movieId
+    const dispatch = useDispatch()
     const [Movie, setMovie] = useState([])
 
     useEffect(() => {
-
-        fetch(`${API_URL}/movies/${movieId}`)
-            .then(response => response.json())
+        dispatch(fetchMovieDetail(movieId))
             .then(response => {
-                setMovie(response)
+                console.log(response)
+                setMovie(response.payload)
             })
-
     }, [])
-
 
     return (
         <div>
@@ -51,14 +50,15 @@ function MovieDetail(props) {
                     score={Movie.score}
                     genres={Movie.genres}
                     actors={Movie.actors}
+                    opened_at={Movie.opened_at}
                 />
                 <br />
 
-                {/* Actors Grid */}
+                {/* Comment Grid */}
 
-                <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
+                {/* <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
                     <button> Toggle Actor View </button>
-                </div>
+                </div> */}
 
             </div>
         </div>

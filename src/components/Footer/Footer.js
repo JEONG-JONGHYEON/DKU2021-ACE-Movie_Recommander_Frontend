@@ -1,10 +1,8 @@
 import React from 'react'
 import { PageHeader, Descriptions } from 'antd';
-import Layout from 'antd/lib/layout/layout';
 
 const renderContent = (column = 2) => (
     <Descriptions size="small" column={column}>
-        {/* <Descriptions.Item label="">커피한잔</Descriptions.Item> */}
         <Descriptions.Item label="">2021-1학기 실무중심산학협력프로젝트</Descriptions.Item>
     </Descriptions>
 );

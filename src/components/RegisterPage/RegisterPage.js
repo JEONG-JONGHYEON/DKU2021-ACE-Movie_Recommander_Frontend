@@ -47,7 +47,7 @@ function RegisterPage(props) {
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        if (Password != Password_Confirm) {
+        if (Password !== Password_Confirm) {
             return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
         }
 
