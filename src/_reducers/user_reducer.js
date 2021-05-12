@@ -14,10 +14,10 @@ export default function (state = {}, action) {
             return { ...state, register: action.payload }
 
         case LOGOUT_USER:
-            return { ...state, register: action.payload }
+            return { ...state, logout: action.payload }
 
         case FETCH_USERINFO:
-            return { ...state, register: action.payload }
+            return { ...state, fetchSuccess: action.payload }
 
         default:
             return state;

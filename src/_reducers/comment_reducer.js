@@ -11,10 +11,10 @@ export default function (state = {}, action) {
             return { ...state, fetchSuccess: action.payload }
 
         case SUBMIT_COMMENT:
-            return { ...state, fetchSuccess: action.payload }
+            return { ...state, submitSuccess: action.payload }
 
         case DELETE_COMMENT:
-            return { ...state, fetchSuccess: action.payload }
+            return { ...state, deleteSuccess: action.payload }
 
         default:
             return state;
