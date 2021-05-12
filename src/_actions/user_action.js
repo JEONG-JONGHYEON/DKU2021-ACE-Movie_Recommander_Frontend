@@ -46,7 +46,7 @@ export function registerUser(dataToSubmit) {
     }
 }
 
-// 유저 정보 액션
+// 사이트 유저 정보 가져오는 액션
 export function fetchUserInfo() {
     const request = axios.get(API_URL + '/myinfo',
         { headers: { 'Authorization': `Token ${localStorage.getItem("token")}` } })

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchMovieDetail } from '../../_actions/movie_action'
+import Comment from './Sections/Comment'
 import MovieInfo from './Sections/MovieInfo'
 
 function MovieDetail(props) {
@@ -55,11 +56,9 @@ function MovieDetail(props) {
                 <br />
 
                 {/* Comment Grid */}
-
-                {/* <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                    <button> Toggle Actor View </button>
-                </div> */}
-
+                <div>
+                    <Comment movieId={movieId} />
+                </div>
             </div>
         </div>
     )

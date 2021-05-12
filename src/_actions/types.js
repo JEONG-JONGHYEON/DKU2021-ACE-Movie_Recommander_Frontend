@@ -10,3 +10,6 @@ export const FETCH_MOVIEDETAIL = "fetch_moviedetail"
 
 // 평가 관리
 export const FETCH_ANONY_COMMENTS = "fetch_anony_comments"
+export const FETCH_USER_COMMENTS = "fetch_user_comments"
+export const SUBMIT_COMMENT = "submit_comment"
+export const DELETE_COMMENT = "delete_comment"
