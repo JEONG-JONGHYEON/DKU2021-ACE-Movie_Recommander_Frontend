@@ -2,23 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../_actions/user_action'
 import { withRouter } from 'react-router-dom'
-import { Form, Input, Button } from 'antd'
-
-const layout = {
-    labelCol: {
-        span: 4,
-    },
-    wrapperCol: {
-        span: 8,
-    },
-};
-
-const tailLayout = {
-    wrapperCol: {
-        offset: 4,
-        span: 8,
-    },
-};
+import './LoginPage.css'
+import NavBar from '../NavBar/NavBar'
 
 function LoginPage(props) {
     const dispatch = useDispatch();
@@ -46,7 +31,7 @@ function LoginPage(props) {
             .then(response => {
                 console.log(response)
                 if (response.payload.result) {
-                    alert('로그인 되었습니다 !')
+                    // alert('로그인 되었습니다 !')
                     localStorage.setItem("token", response.payload.auth_token)
                     props.history.push('/')
                     window.location.reload()
@@ -58,47 +43,37 @@ function LoginPage(props) {
 
     return (
         <div>
-            <Form
-                {...layout}
-                name="basic"
-                style={{ paddingTop: "50px" }}
-            >
-                <Form.Item
-                    label="이메일"
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: '이메일은 입력하셔야죠..',
-                        },
-                    ]}
-                >
-                    <Input value={Email} onChange={onChangeEmail} />
-                </Form.Item>
+            <NavBar />
+            <form class="loginForm">
 
-                <Form.Item
-                    label="비밀번호"
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: '비밀번호는 입력하셔야죠..',
-                        },
-                    ]}
-                >
-                    <Input.Password value={Password} onChange={onChangePassword} />
-                </Form.Item>
+                <h2 style={{ color: 'white' }}>Login</h2>
 
-                <Form.Item
-                    {...tailLayout}
-                >
-                    <Button type="primary" htmlType="submit" onClick={onSubmitHandler}>
-                        로그인
-                    </Button>
-                </Form.Item>
-            </Form>
+                <div class="idForm">
+                    <input type="text" class="id" placeholder="Email" value={Email} onChange={onChangeEmail} />
+                </div>
+
+                <div class="passForm">
+                    <input type="password" class="pw" placeholder="PW" value={Password} onChange={onChangePassword} />
+                </div>
+
+                <button type="button" class="btn" onClick={onSubmitHandler}>
+                    LOG IN
+                 </button>
+
+
+                <div class="bottomText">
+                    <br />
+                    <p style={{ fontsize: '10pt' }}>
+                        Don't you have ID? <br />
+                        <a href="/signup">Sign Up</a>
+                    </p>
+                </div>
+
+            </form>
 
         </div>
+
+
     );
 };
 

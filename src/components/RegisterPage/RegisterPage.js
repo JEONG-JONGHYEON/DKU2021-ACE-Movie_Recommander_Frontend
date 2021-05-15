@@ -2,23 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../_actions/user_action'
 import { withRouter } from 'react-router-dom'
-import { Form, Input, Button } from 'antd'
-
-const layout = {
-    labelCol: {
-        span: 4,
-    },
-    wrapperCol: {
-        span: 8,
-    },
-};
-
-const tailLayout = {
-    wrapperCol: {
-        offset: 4,
-        span: 8,
-    },
-};
+import './RegisterPage.css'
+import NavBar from '../NavBar/NavBar'
 
 function RegisterPage(props) {
     const dispatch = useDispatch();
@@ -71,71 +56,41 @@ function RegisterPage(props) {
     }
 
     return (
-        <Form
-            {...layout}
-            name="basic"
-            style={{ paddingTop: "50px" }}
-        >
-            <Form.Item
-                label="이메일"
-                name="email"
-                rules={[
-                    {
-                        required: true,
-                        message: '이메일은 입력하셔야죠..',
-                    },
-                ]}
-            >
-                <Input value={Email} onChange={onEmailHandler} />
-            </Form.Item>
+        <div>
+            <NavBar />
+            <form class="registerForm">
 
-            <Form.Item
-                label="닉네임"
-                name="nickname"
-                rules={[
-                    {
-                        required: true,
-                        message: '닉네임은 입력하셔야죠..',
-                    },
-                ]}
-            >
-                <Input value={Nickname} onChange={onNicknameHandler} />
-            </Form.Item>
+                <h2 style={{ color: 'white' }}>SignUp</h2>
 
-            <Form.Item
-                label="비밀번호"
-                name="password"
-                rules={[
-                    {
-                        required: true,
-                        message: '비밀번호는 입력하셔야죠..',
-                    },
-                ]}
-            >
-                <Input.Password value={Password} onChange={onPasswordHandler} />
-            </Form.Item>
+                <div class="idForm">
+                    <input type="text" class="id" placeholder="Email" value={Email} onChange={onEmailHandler} />
+                </div>
 
-            <Form.Item
-                label="비밀번호확인"
-                name="passwordConfirm"
-                rules={[
-                    {
-                        required: true,
-                        message: '비밀번호확인은 입력하셔야죠..',
-                    },
-                ]}
-            >
-                <Input.Password value={Password_Confirm} onChange={onPassword_ConfirmHandler} />
-            </Form.Item>
+                <div class="nicknameForm">
+                    <input type="text" class="nickname" placeholder="Nickname" value={Nickname} onChange={onNicknameHandler} />
+                </div>
 
-            <Form.Item
-                {...tailLayout}
-            >
-                <Button type="primary" htmlType="submit" onClick={onSubmitHandler}>
-                    회원가입
-                </Button>
-            </Form.Item>
-        </Form>
+                <div class="passForm">
+                    <input type="password" class="pw" placeholder="PW" value={Password} onChange={onPasswordHandler} />
+                </div>
+
+                <div class="passcheck">
+                    <input type="password" class="pwcheck" placeholder="PW check" value={Password_Confirm} onChange={onPassword_ConfirmHandler} />
+                </div>
+
+                <button type="button" class="btn" onClick={onSubmitHandler}>
+                    SIGN UP
+                </button>
+
+                <div class="bottomText">
+                    <br />
+                    <p style={{ fontsize: '10pt' }}>
+                        Already have your account? <br />
+                        <a href="/login">Log In</a>
+                    </p>
+                </div>
+            </form>
+        </div>
     )
 }
 

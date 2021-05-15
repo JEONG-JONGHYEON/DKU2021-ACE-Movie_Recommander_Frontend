@@ -1,19 +1,144 @@
-.site-layout-content {
-  min-height: 280px;
-  padding: 24px;
-  background: #fff;
-}
-.logo {
-  float: left;
-  width: 175px;
-  height: 31px;
-  color: #fff;
-  font-size: 1.2rem;
-}
-.ant-row-rtl {
-  float: right;
-  margin: 16px 0 16px 24px;
-}
-  [data-theme="dark"] .site-layout-content {
-    background: #141414;
+.menu {
+    position: relative;
+    background: #1c58a7;
+    width: 12em;
+    height: 12em;
+    border-radius: 115em;
+    margin: auto;
+    margin-top: 20em;
+    margin-bottom: 5em;
+    border: 1em solid #8dd2f1;
+  }
+  .menu:after {
+    content: "";
+    position: absolute;
+    top: 5.7em;
+    left: 5em;
+    width: 2em;
+    height: 1.2em;
+    border-top: 0.6em double #fff;
+  }
+  .menu ul {
+    padding: 0;
+  }
+  .menu li {
+    display: block;
+    width: 7em;
+    height: 0.3em;
+    padding: 1em;
+    margin-top: 0.5em;
+    text-align: center;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    transition: all 1s;
+    background: #8dd2f1;
+    opacity: 0;
+    z-index: -1;
+    line-height: 0;
+  }
+  .menu:hover li {
+    opacity: 1;
+  }
+  /**
+   * Add a pseudo element to cover the space
+   * between the links. This is so the menu
+   * does not lose :hover focus and disappear
+   */
+  .menu:hover ul::before {
+    
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: -5.0em;
+    /**
+     * The pseudo-element is a semi-circle
+     * created with CSS. Top, bottom, and right
+     * borders are 6.5em (left being 0), and then
+     * a border-radius is added to the two corners
+     * on the right.
+     */
+    border-width: 6.5em;
+    border-radius: 0 7.5em 7.5em 0;
+    border-left: 0;
+    border-style: solid;
+    /**
+     * Have to have a border color for the border
+     * to be hoverable. I'm using a very light one
+     * so that it looks invisible.
+     */
+    border-color: rgba(0,0,0,0.01);
+    /**
+     * Put the psuedo-element behind the links
+     * (So they can be clicked on)
+     */
+    z-index: -1;
+    /**
+     * Make the cursor default so it looks like
+     * nothing is there
+     */
+    cursor: default;
+  }
+  .menu a {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    text-decoration: none;
+    /**
+     * This is to vertically center the text on the
+     * little tab-like things that the text is on.
+     */
+  }
+  .menu ul {
+    transform: rotate(-90deg) translateY(-1.4em) translateX(-1.2em);
+    transition: 1s all;
+  }
+  .menu:hover ul {
+    transform: rotate(90deg) translateY(-5.5em) translateX(10em);
+  }
+  .menu li:hover {
+    display: block;
+    background: #1c58a7;
+    z-index: 10;
+  }
+  
+  .menu li:nth-of-type(1) {
+    display: block;
+    transform: rotate(-90deg);
+    position: absolute;
+    left: -9em;
+    top: -5em;
+  }
+  .menu li:nth-of-type(2) {
+    transform: rotate(-90deg);
+    position: absolute;
+    left: -3.2em;
+    top: -7em;
+  }
+  .menu li:nth-of-type(3) {
+    transform: rotate(-90deg);
+    position: absolute;
+    left: 2em;
+    top: -5em;
+  }
+  /*.menu li:nth-of-type(4) {
+    transform: rotate(-135deg);
+    position: absolute;
+    left: 2.3em;
+    top: 3.7em;
+  }
+  .menu li:nth-of-type(5) {
+    transform: rotate(270deg);
+    position: absolute;
+    left: -1.2em;
+    top: 5.3em;
+  }
+  */
+  .hint {
+    text-align: center;
+    color : white;
   }

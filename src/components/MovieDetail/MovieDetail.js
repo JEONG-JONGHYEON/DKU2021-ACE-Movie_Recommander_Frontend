@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchMovieDetail } from '../../_actions/movie_action'
+import NavBar from '../NavBar/NavBar'
 import Comment from './Sections/Comment'
 import MovieInfo from './Sections/MovieInfo'
 
@@ -20,7 +21,9 @@ function MovieDetail(props) {
 
     return (
         <div>
-
+            <NavBar />
+            <br />
+            <br />
             {/* Header */}
             <div style={{
                 background: `linear-gradient(to bottom, rgba(0,0,0,0)

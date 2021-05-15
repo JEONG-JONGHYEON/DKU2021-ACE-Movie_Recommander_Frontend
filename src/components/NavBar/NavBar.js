@@ -1,10 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import 'antd/dist/antd.css'
-import { Layout, Menu } from 'antd'
 import { logoutUser } from '../../_actions/user_action'
-
-const { Header } = Layout
+import './NavBar.css'
 
 function NavBar() {
     const dispatch = useDispatch();
@@ -18,24 +15,27 @@ function NavBar() {
 
     // 중복되는 Home Movies 아이템은 어떻게 해결할까..
     return (
-        <Header style={{ zIndex: 1, width: '100%' }} >
-            <div className="logo">영화보러갈래v2</div>
+        <div class="bar">
             {localStorage.getItem("token") === null ?
-                <Menu theme="dark" mode="horizontal">
-                    <Menu.Item key="1"><a href="/">Home</a></Menu.Item>
-                    <Menu.Item key="2"><a href="/movie">Movies</a></Menu.Item>
-                    <Menu.Item key="3"><a href="/login">Login</a></Menu.Item>
-                    <Menu.Item key="4"><a href="/register">Register</a></Menu.Item>
-                </Menu>
+                <nav>
+                    <ul class="bar">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/signup">SignUp</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/movie">MovieList</a></li>
+                    </ul>
+                </nav>
                 :
-                <Menu theme="dark" mode="horizontal">
-                    <Menu.Item key="1"><a href="/">Home</a></Menu.Item>
-                    <Menu.Item key="2"><a href="/movie">Movies</a></Menu.Item>
-                    <Menu.Item key="3" onClick={onLogoutHandler}>Logout</Menu.Item>
-                    <Menu.Item key="4"><a href="/mypage">MyPage</a></Menu.Item>
-                </Menu>
+                <nav>
+                    <ul class="bar">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/mypage">MyPage</a></li>
+                        <li><a href="#" onClick={onLogoutHandler}>Logout</a></li>
+                        <li><a href="/movie">MovieList</a></li>
+                    </ul>
+                </nav>
             }
-        </Header >
+        </div>
     )
 }
 

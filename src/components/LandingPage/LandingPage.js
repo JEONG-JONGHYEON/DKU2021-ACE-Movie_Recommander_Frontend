@@ -1,19 +1,43 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import 'antd/dist/antd.css';
+import { useDispatch } from 'react-redux'
+import { logoutUser } from '../../_actions/user_action'
 import './LandingPage.css';
-import { Layout } from 'antd';
-
-
-const { Content, Footer } = Layout;
 
 function LandingPage() {
+    const dispatch = useDispatch();
+
+    const onLogoutHandler = (e) => {
+        dispatch(logoutUser())
+            .then(response => {
+                console.log(response)
+            })
+    }
+
     return (
-        <Content style={{ padding: '50px' }}>
-            본 사이트는 영화 정보 / 영화 추천을 제공하는 사이트입니다.<br />
-                    사이트 이용 방법<br />
-                    ~~~
-        </Content>
+        <div>
+
+            {localStorage.getItem("token") === null ?
+                <nav class="menu">
+                    <ul>
+                        <li><a href="/signup">SignUp</a></li>
+                        <li><a href="/login">SignIn</a></li>
+                        <li><a href="/movie">MovieList</a></li>
+                    </ul>
+                </nav>
+                :
+                <nav class="menu">
+                    <ul>
+                        <li><a href="/mypage">MyPage</a></li>
+                        <li><a href="#" onClick={onLogoutHandler}>Logout</a></li>
+                        <li><a href="/movie">MovieList</a></li>
+                    </ul>
+                </nav>
+            }
+            <br /><br />
+            <h1 class="hint">영화보러갈래?</h1>
+            <p class="hint" >DKU2021-ACE 커피한잔팀 댓글 기반 영화추천 서비스</p>
+        </div>
     )
 }
 

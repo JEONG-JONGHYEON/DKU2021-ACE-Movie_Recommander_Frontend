@@ -1,0 +1,24 @@
+.bar div {
+    position: absolute;
+}
+.bar ul { 
+    list-style-type: none;
+    list-style: none;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 0px;
+}
+
+.bar li {
+    float : right;
+    list-style-type: none;
+    list-style: none;
+    margin-left: 1em;
+    font-size: 1.2em;
+}
+
+.bar li a {
+    display:block;
+    padding: 8px;
+    text-decoration: none;
+}
