@@ -1,9 +1,25 @@
+
+
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+ p {
+   font-family: 'GmarketSansLight';
+ }
+
+ a {
+   font-family: sans-serif;
+ }
+
 .menu {
     position: relative;
     background: #1c58a7;
-    width: 12em;
-    height: 12em;
-    border-radius: 115em;
+    width: 4em;
+    height: 4em;
+    border-radius: 9em;
     margin: auto;
     margin-top: 20em;
     margin-bottom: 5em;
@@ -12,21 +28,22 @@
   .menu:after {
     content: "";
     position: absolute;
-    top: 5.7em;
-    left: 5em;
-    width: 2em;
-    height: 1.2em;
+    top: 1.45em;
+    left: 1.5em;
+    width: 1em;
+    height: 0.2em;
     border-top: 0.6em double #fff;
+    border-bottom: 0.2em solid #fff;
   }
   .menu ul {
+    list-style: none;
     padding: 0;
   }
   .menu li {
-    display: block;
-    width: 7em;
-    height: 0.3em;
-    padding: 1em;
-    margin-top: 0.5em;
+    width: 5em;
+    height: 1.4em;
+    padding: 0.2em;
+    /*margin-top: 0.2em;*/
     text-align: center;
     border-top-right-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
@@ -36,7 +53,6 @@
     background: #8dd2f1;
     opacity: 0;
     z-index: -1;
-    line-height: 0;
   }
   .menu:hover li {
     opacity: 1;
@@ -52,6 +68,7 @@
     content: "";
     width: 0;
     height: 0;
+    display: block;
     left: 50%;
     top: -5.0em;
     /**
@@ -61,16 +78,16 @@
      * a border-radius is added to the two corners
      * on the right.
      */
-    border-width: 6.5em;
-    border-radius: 0 7.5em 7.5em 0;
-    border-left: 0;
-    border-style: solid;
-    /**
-     * Have to have a border color for the border
-     * to be hoverable. I'm using a very light one
-     * so that it looks invisible.
-     */
-    border-color: rgba(0,0,0,0.01);
+     border-width: 6.5em;
+     border-radius: 0 7.5em 7.5em 0;
+     border-left: 0;
+     border-style: solid;
+     /**
+      * Have to have a border color for the border
+      * to be hoverable. I'm using a very light one
+      * so that it looks invisible.
+      */
+     border-color: rgba(0,0,0,0.01);
     /**
      * Put the psuedo-element behind the links
      * (So they can be clicked on)
@@ -83,47 +100,43 @@
     cursor: default;
   }
   .menu a {
-    display: block;
-    margin: 0px;
-    padding: 0px;
     color: white;
     text-decoration: none;
     /**
      * This is to vertically center the text on the
      * little tab-like things that the text is on.
      */
+    line-height: 1.5em;
+   
   }
   .menu ul {
-    transform: rotate(-90deg) translateY(-1.4em) translateX(-1.2em);
+    transform: rotate(-90deg) translateY(-1.4em) translateX(-3em);
     transition: 1s all;
   }
   .menu:hover ul {
-    transform: rotate(90deg) translateY(-5.5em) translateX(10em);
+    transform: rotate(90deg) translateY(-1.5em) translateX(2.3em);
   }
   .menu li:hover {
-    display: block;
     background: #1c58a7;
     z-index: 10;
   }
   
   .menu li:nth-of-type(1) {
-    display: block;
     transform: rotate(-90deg);
     position: absolute;
-    left: -9em;
-    top: -5em;
+    left: -1.6em;
+    top: -4.5em;
   }
   .menu li:nth-of-type(2) {
-    transform: rotate(-90deg);
+    transform: rotate(-45deg);
     position: absolute;
-    left: -3.2em;
-    top: -7em;
+    left: 1.5em;
+    top: -3em;
   }
   .menu li:nth-of-type(3) {
-    transform: rotate(-90deg);
     position: absolute;
-    left: 2em;
-    top: -5em;
+    left: 3.5em;
+    top: 0.3em;
   }
   /*.menu li:nth-of-type(4) {
     transform: rotate(-135deg);

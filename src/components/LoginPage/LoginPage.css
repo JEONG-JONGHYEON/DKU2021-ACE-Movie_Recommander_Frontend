@@ -1,6 +1,18 @@
 * {
   margin: 0px;
   padding: 0px;
+  font-family: 'Hind',sans-serif;
+}
+
+p{
+  font-family: sans-serif;
+}
+
+:placeholder-shown{
+  font-family: 'Hind', sans-serif;
+}
+h3{
+  font-family: sans-serif;
 }
 
 .loginForm {
@@ -14,11 +26,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 15px;
+  
 }
 
 .loginForm h2 {
   text-align: center;
   margin: 30px;
+  font-family: sans-serif;
 }
 
 .idForm {
@@ -38,7 +52,7 @@
   border: none;
   outline: none;
   color: #636e72;
-  font-size: 16px;
+  font-size: 10px;
   height: 25px;
   background: none;
 }
@@ -48,12 +62,13 @@
   border: none;
   outline: none;
   color: #636e72;
-  font-size: 16px;
+  font-size: 10px;
   height: 25px;
   background: none;
 }
 
 .btn {
+  font-family: 'Hind',sans-serif;
   position: relative;
   left: 40%;
   transform: translateX(-50%);
@@ -78,4 +93,5 @@
 .bottomText {
   text-align: center;
   color: white;
+  font-size: 10pt;
 }

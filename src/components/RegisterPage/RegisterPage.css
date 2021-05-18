@@ -2,7 +2,12 @@
   margin: 0px;
   padding: 0px;
 }
-
+:placeholder-shown{
+  font-family: 'Hind', sans-serif;
+}
+h2{
+  font-family: sans-serif;
+}
 .registerForm {
   position: absolute;
   width: 350px;
@@ -113,3 +118,4 @@
   text-align: center;
   color: white;
 }
+

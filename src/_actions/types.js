@@ -7,6 +7,7 @@ export const FETCH_USERINFO = "fetch_userinfo"
 // 영화 관리
 export const FETCH_MOVIES = "fetch_movies"
 export const FETCH_MOVIEDETAIL = "fetch_moviedetail"
+export const FETCH_RECOMMENDEDMOVIES = "fetch_recommendedmovies"
 
 // 평가 관리
 export const FETCH_ANONY_COMMENTS = "fetch_anony_comments"

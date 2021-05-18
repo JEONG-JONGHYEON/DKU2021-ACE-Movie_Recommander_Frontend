@@ -24,6 +24,8 @@ function MovieDetail(props) {
             <NavBar />
             <br />
             <br />
+            <br />
+            <br />
             {/* Header */}
             <div style={{
                 background: `linear-gradient(to bottom, rgba(0,0,0,0)

@@ -52,7 +52,8 @@ function MovieListPage() {
             <NavBar />
             <br />
             <br />
-            <div style={{ margin: 'auto', textAlign: 'center' }}>
+            <br />
+            {/* <div style={{ margin: 'auto', textAlign: 'center' }}>
                 평점 선택
                 <select style={{ color: 'black', marginLeft: '1%', marginRight: '1%' }} onChange={(e) => setScore(parseInt(e.target.value))} >
                     <option style={{ color: 'black' }} value={0}>0</option>
@@ -70,7 +71,8 @@ function MovieListPage() {
 
                 <input type='text' placeholder='영화 제목' onChange={onTitleHandler} style={{ color: 'black' }} />
                 <button style={{ backgroundColor: 'black' }} onClick={filterMovies}>검색</button>
-            </div>
+            </div> */}
+
             <div style={{ width: '100%', margin: '0' }}>
                 <div style={{ width: '85%', margin: '1rem auto' }}>
                     <h2 style={{ color: "white" }}> 영화 목록 </h2>
@@ -93,7 +95,7 @@ function MovieListPage() {
 
                 <br />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button onClick={loadMoreMovies}> 더 불러오기 </button>
+                    <button style={{ color: 'black' }} onClick={loadMoreMovies}> 더 불러오기 </button>
                 </div>
                 <br />
             </div>

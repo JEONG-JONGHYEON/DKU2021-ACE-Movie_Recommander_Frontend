@@ -59,6 +59,7 @@ function Comment(props) {
 
     return (
         <div>
+            ---------------------------------
             <div>
                 익명 평가
                 <br />
@@ -68,14 +69,16 @@ function Comment(props) {
                         <p>
                             닉네임 : 익명,
                         평점 : {AnonyComment.score},
+                        감정 : {AnonyComment.calculated_label_emotion === 1 ? "긍정" : "부정"},
                         내용: {AnonyComment.body}
                         </p>
                     </span>
                 )}
             </div>
-            <button onClick={AnonyPageDown}>Down</button>
-            <button onClick={AnonyPageUp}>Up</button>
+            <button style={{ color: "black" }} onClick={AnonyPageDown}>Down</button>
+            <button style={{ color: "black" }} onClick={AnonyPageUp}>Up</button>
             <br />
+            ---------------------------------
             <div>
                 유저 평가
                 <br />
@@ -90,33 +93,34 @@ function Comment(props) {
                     </span>
                 )}
             </div>
+            ---------------------------------
             <div>
                 평가 하기
-                <form>
+                <div>
                     <ul>
-                        <li>
+                        <li style={{ float: 'left' }}>
                             <label for={Score}>평점</label>
-                            <select id={Score} onChange={(e) => setScore(parseInt(e.target.value))}>
-                                <option value={0}>0</option>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                                <option value={5}>5</option>
-                                <option value={6}>6</option>
-                                <option value={7}>7</option>
-                                <option value={8}>8</option>
-                                <option value={9}>9</option>
-                                <option value={10}>10</option>
+                            <select style={{ color: "black" }} id={Score} onChange={(e) => setScore(parseInt(e.target.value))}>
+                                <option style={{ color: "black" }} value={0}>0</option>
+                                <option style={{ color: "black" }} value={1}>1</option>
+                                <option style={{ color: "black" }} value={2}>2</option>
+                                <option style={{ color: "black" }} value={3}>3</option>
+                                <option style={{ color: "black" }} value={4}>4</option>
+                                <option style={{ color: "black" }} value={5}>5</option>
+                                <option style={{ color: "black" }} value={6}>6</option>
+                                <option style={{ color: "black" }} value={7}>7</option>
+                                <option style={{ color: "black" }} value={8}>8</option>
+                                <option style={{ color: "black" }} value={9}>9</option>
+                                <option style={{ color: "black" }} value={10}>10</option>
                             </select>
                         </li>
                         <li>
-                            <label>평가 내용</label>
-                            <textarea cols="100" rows="4" onChange={(e) => setCommentToSubmit(e.target.value)}></textarea>
+                            <textarea style={{ color: "black" }} cols="100" rows="4" onChange={(e) => setCommentToSubmit(e.target.value)}></textarea>
                         </li>
-                        <input type="button" value="평가하기" onClick={SubmitComment}></input>
                     </ul>
-                </form>
+                    <br />
+                    <button style={{ color: "black" }} onClick={SubmitComment}>평가하기</button>
+                </div>
             </div>
         </div>
     )

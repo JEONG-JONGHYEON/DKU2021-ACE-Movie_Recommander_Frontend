@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {
-    FETCH_MOVIES, FETCH_MOVIEDETAIL
+    FETCH_MOVIES, FETCH_MOVIEDETAIL, FETCH_RECOMMENDEDMOVIES
 } from './types'
 import { API_URL } from '../components/Config'
 
@@ -30,6 +30,18 @@ export function fetchMovieDetail(movieId) {
 
     return {
         type: FETCH_MOVIEDETAIL,
+        payload: request
+    }
+}
+
+// 추천된 영화 리스트 가져오는 액션
+export function fetchRecommendedMovies() {
+    const request = axios.get(API_URL + '/recommends',
+        { headers: { 'Authorization': `Token ${localStorage.getItem("token")}` } })
+        .then(response => response.data)
+
+    return {
+        type: FETCH_RECOMMENDEDMOVIES,
         payload: request
     }
 }
